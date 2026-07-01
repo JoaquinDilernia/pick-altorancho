@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { authenticate, callKw, fetchAll } from './odoo.mjs';
+import { authenticate, fetchAll } from './odoo.mjs';
 import { batchWrite, deleteStale, setMetadata } from './firebase.mjs';
 import { buildProduct } from './format.mjs';
 
@@ -110,10 +110,8 @@ export async function runSync() {
   console.log(`[sync] building ${docs.length} products (skipped ${skipped})`);
 
   const activeSkus   = new Set(docs.map(d => d.id));
-  const [{ written }, { deleted }] = await Promise.all([
-    batchWrite(docs),
-    deleteStale(activeSkus),
-  ]);
+  const { written } = await batchWrite(docs);
+  const { deleted } = await deleteStale(activeSkus);
 
   const durationMs = Date.now() - start;
   const result = { synced: written, skipped, deleted, durationMs, pricelists: { tnId, promoId } };

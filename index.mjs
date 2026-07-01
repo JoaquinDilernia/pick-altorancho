@@ -10,7 +10,9 @@ const PORT   = process.env.PORT || 3000;
 const SECRET = process.env.SYNC_SECRET;
 const HOURS  = parseInt(process.env.SYNC_INTERVAL_HOURS || '6', 10);
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGIN || '*',
+}));
 app.use(express.json());
 
 function requireToken(req, res, next) {
