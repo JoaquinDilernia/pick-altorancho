@@ -12,13 +12,14 @@ export function buildProduct(sku, name, templateId, tnPrice, promoPrice) {
   const discountPct = hasPromo
     ? Math.round((tnPrice - promoPrice) / tnPrice * 100)
     : null;
+  const effectivePrice = hasPromo ? promoPrice : tnPrice;
 
   const doc = {
     Name:        sku,
     Description: name,
     MODELO:      name,
     Precio:      formatARS(tnPrice),
-    Efecivo:     formatARS(tnPrice * 0.80),
+    Efecivo:     formatARS(effectivePrice * 0.80),
     Descuento:   hasPromo ? 'SI' : 'NO',
   };
 

@@ -30,6 +30,7 @@ test('buildProduct con promo', () => {
   assert.equal(p.Descuento, 'SI');
   assert.equal(p.Pdesceunto, '$ 65.994,00');
   assert.equal(p.Porcentaje, '34%');
+  assert.equal(p.Efecivo, '$ 52.795,20');
 });
 
 test('buildProduct sin imagen', () => {
