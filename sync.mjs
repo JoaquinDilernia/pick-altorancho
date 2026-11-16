@@ -109,6 +109,15 @@ export async function runSync() {
 
   console.log(`[sync] building ${docs.length} products (skipped ${skipped})`);
 
+  // Protección: si la lista de precios vino vacía (ej. lista nueva recién creada
+  // en Odoo sin precios cargados), abortar ANTES de tocar Firebase para no borrar
+  // todos los productos.
+  if (docs.length === 0) {
+    throw new Error(
+      `Sync abortado: 0 productos en la lista [${tnId}] — Firebase no fue modificado`
+    );
+  }
+
   const activeSkus   = new Set(docs.map(d => d.id));
   const { written } = await batchWrite(docs);
   const { deleted } = await deleteStale(activeSkus);
