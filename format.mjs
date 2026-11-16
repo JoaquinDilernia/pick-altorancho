@@ -19,7 +19,7 @@ export function buildProduct(sku, name, templateId, tnPrice, promoPrice) {
     Description: name,
     MODELO:      name,
     Precio:      formatARS(tnPrice),
-    Efecivo:     formatARS(effectivePrice * 0.80),
+    Efecivo:     formatARS(effectivePrice * 0.75),
     Descuento:   hasPromo ? 'SI' : 'NO',
   };
 

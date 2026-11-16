@@ -19,7 +19,7 @@ test('buildProduct sin promo', () => {
   assert.equal(p.Name, 'ALF001BN');
   assert.equal(p.Precio, '$ 99.990,00');
   assert.equal(p.Descuento, 'NO');
-  assert.equal(p.Efecivo, '$ 79.992,00');
+  assert.equal(p.Efecivo, '$ 74.992,50');
   assert.ok(!p.Pdesceunto);
   assert.ok(!p.Porcentaje);
   assert.equal(p.img, 'https://lett.exemax.ar/web/image/product.template/38349/image_512');
@@ -30,7 +30,7 @@ test('buildProduct con promo', () => {
   assert.equal(p.Descuento, 'SI');
   assert.equal(p.Pdesceunto, '$ 65.994,00');
   assert.equal(p.Porcentaje, '34%');
-  assert.equal(p.Efecivo, '$ 52.795,20');
+  assert.equal(p.Efecivo, '$ 49.495,50');
 });
 
 test('buildProduct sin imagen', () => {
